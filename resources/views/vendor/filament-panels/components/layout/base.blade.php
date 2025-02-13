@@ -118,7 +118,7 @@
                 ->class([
                     'fi-body',
                     'fi-panel-' . filament()->getId(),
-                    'hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed'
+                    'hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed'
                     => !filament()->hasTopNavigation() && ( filament()->hasNavigation()) && filament()->auth()->check(),
                     'main-header navbar navbar-expand-md navbar-light navbar-white'
                     => filament()->hasTopNavigation() && (filament()->hasNavigation()) && filament()->auth()->check(),
