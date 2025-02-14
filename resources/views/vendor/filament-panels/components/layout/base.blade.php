@@ -9,7 +9,7 @@
     @class([
         'fi min-h-screen',
         'dark' => filament()->hasDarkModeForced(),
-    ])
+    ])//
 >
     <head>
         {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::HEAD_START, scopes: $livewire->getRenderHookScopes()) }}
@@ -38,9 +38,16 @@
         <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
-        <link rel="stylesheet" href="style/plugins/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="{{ asset('style') }}/plugins/fontawesome-free/css/all.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="style/dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="{{ asset('style') }}/dist/css/adminlte.min.css">
+
+        <!-- jQuery -->
+        <script src="{{ asset('style') }}/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="{{ asset('style') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="{{ asset('style') }}/dist/js/adminlte.min.js"></script>
 
         <style>
             [x-cloak=''],
@@ -116,7 +123,7 @@
         {{ $attributes
                 ->merge(($livewire ?? null)?->getExtraBodyAttributes() ?? [], escape: false)
                 ->class([
-                    'fi-body',
+                    'text-sm',
                     'fi-panel-' . filament()->getId(),
                     'hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed'
                     => !filament()->hasTopNavigation() && ( filament()->hasNavigation()) && filament()->auth()->check(),
@@ -134,12 +141,7 @@
 
         {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::SCRIPTS_BEFORE, scopes: $livewire->getRenderHookScopes()) }}
 
-<!-- jQuery -->
-<script src="style/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="style/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="style/dist/js/adminlte.min.js"></script>
+
 
         @filamentScripts(withCore: true)
 
