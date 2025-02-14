@@ -10,6 +10,7 @@
     $widgetData = $this->getWidgetData();
 @endphp
 
+
 <div class="content-wrapper">
     {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::PAGE_START, scopes: $this->getRenderHookScopes()) }}
 
@@ -34,6 +35,28 @@
             @endif
         </x-filament-panels::header>
     @endif
+
+    {{-- widget --}}
+    {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::PAGE_HEADER_WIDGETS_BEFORE, scopes: $this->getRenderHookScopes()) }}
+
+    @if ($headerWidgets = $this->getVisibleHeaderWidgets())
+        <x-filament-widgets::widgets :columns="$this->getHeaderWidgetsColumns()" :data="$widgetData" :widgets="$headerWidgets"
+            class="fi-page-header-widgets" />
+    @endif
+
+    {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::PAGE_HEADER_WIDGETS_AFTER, scopes: $this->getRenderHookScopes()) }}
+
+    {{ $slot }}
+
+    {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::PAGE_FOOTER_WIDGETS_BEFORE, scopes: $this->getRenderHookScopes()) }}
+
+    @if ($footerWidgets = $this->getVisibleFooterWidgets())
+        <x-filament-widgets::widgets :columns="$this->getFooterWidgetsColumns()" :data="$widgetData" :widgets="$footerWidgets"
+            class="fi-page-footer-widgets" />
+    @endif
+
+    {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::PAGE_FOOTER_WIDGETS_AFTER, scopes: $this->getRenderHookScopes()) }}
+
 
     {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::PAGE_END, scopes: $this->getRenderHookScopes()) }}
 
