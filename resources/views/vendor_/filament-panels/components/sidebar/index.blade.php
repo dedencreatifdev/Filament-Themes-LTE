@@ -31,7 +31,7 @@
                     ? @js($openSidebarClasses . ' ' . 'lg:sticky')
                     : 'w-[--sidebar-width] -translate-x-full rtl:translate-x-full lg:sticky'
             "
-        @endif
+        @endif 
     @endif
     {{
         $attributes->class([
